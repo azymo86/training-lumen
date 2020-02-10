@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class KapalController extends BaseController
+class ContactController extends BaseController
 {
     public function index ()
     {
 
-      $data = 'Hallo World';
+      $data = 'Halo Dunia';
 
       // dd($data);
 

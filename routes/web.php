@@ -24,5 +24,15 @@ $router->get('/', function () use ($router) {
 // lets start
 $router->get('/', 'TestController@index');
 
-// example route
-$router->get('/kapal', 'KapalController@index');
+// Tester Area
+$router->group(['prefix' => '/test'], function ($router) {
+  $router->get('/kapal', 'KapalController@index');
+  $router->post('/req','TestController@postRequest');
+});
+
+$router->group(['prefix' => '/easycamp'], function ($router) {
+      // init Contact
+      $router->get('','ContactController@index');
+      $router->get('/inventory', 'InventoryController@ListInventory');
+      $router->post('/inventory/save', 'InventoryController@SaveInventory');
+});
