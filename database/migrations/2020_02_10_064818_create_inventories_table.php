@@ -17,6 +17,7 @@ class CreateInventoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 150);
             $table->integer('price');
+            $table->text('url_image')->nullable();
             $table->timestamps();
         });
     }
