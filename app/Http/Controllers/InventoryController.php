@@ -28,8 +28,8 @@ class InventoryController extends BaseController
         // rename and uploading image
         $folder    = 'upload/images';
         $filename  = 'easycamp-'.rand().'.'.$file->getClientOriginalExtension();
-        $file->move($folder,$filename);
-        $url_image = '/upload/images/'.$filename;
+        $url_image = '/'.$folder.'/'.$filename;
+        $file->move($folder,$filename); // upload
       }
 
       // insert data
@@ -41,6 +41,9 @@ class InventoryController extends BaseController
 
       // showing data save
       $data = Inventory::latest()->first();
+
+      // set url app
+      $data->url_image = env("APP_URL").$data->url_image;
 
       // json
       $out = array(
@@ -54,7 +57,7 @@ class InventoryController extends BaseController
     // Readlist
     public function ListInventory (Request $request)
     {
-      // dd($request->per_page);
+      // get data from database
       $raw  = Inventory::OrderBy("id", "ASC");
       $data = $raw
         ->select('id','name','price','url_image')
@@ -115,5 +118,5 @@ class InventoryController extends BaseController
 
       return response()->json($out, 200);
     }
-    
+
 }
