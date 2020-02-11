@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 // });
 
 // lets start
-$router->get('/', 'TestController@index');
+$router->get('/', 'Controller@index');
 
 // Tester Area
 $router->group(['prefix' => '/test'], function ($router) {
@@ -32,7 +32,9 @@ $router->group(['prefix' => '/test'], function ($router) {
 
 $router->group(['prefix' => '/easycamp'], function ($router) {
       // init Contact
-      $router->get('','ContactController@index');
+      $router->get('','Controller@index');
       $router->get('/inventory', 'InventoryController@ListInventory');
-      $router->post('/inventory/save', 'InventoryController@SaveInventory');
+      $router->get('/inventory/{id}', 'InventoryController@DetailInventory');
+      $router->post('/inventory-save', 'InventoryController@SaveInventory');
+      $router->post('/inventory-update', 'InventoryController@UpdateInventory');
 });
