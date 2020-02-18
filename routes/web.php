@@ -26,8 +26,12 @@ $router->get('/', 'Controller@index');
 
 // Tester Area
 $router->group(['prefix' => '/test'], function ($router) {
-  $router->get('/kapal', 'KapalController@index');
+  $router->get('/', 'TestController@index');
   $router->post('/req','TestController@postRequest');
+  $router->post('/random','TestController@generateRandom');
+  $router->post('/post','TestController@receive');
+  $router->post('/register','TestController@register');
+  $router->post('/login','TestController@login');
 });
 
 $router->group(['prefix' => '/easycamp'], function ($router) {
@@ -38,3 +42,35 @@ $router->group(['prefix' => '/easycamp'], function ($router) {
       $router->post('/inventory-save', 'InventoryController@SaveInventory');
       $router->post('/inventory-update', 'InventoryController@UpdateInventory');
 });
+
+
+$router->group(['middleware' => 'user'], function ($router) {
+    $router->get('/auth', 'TestController@index');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
