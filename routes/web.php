@@ -15,12 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-// Generate Application Key
-// $router->get('/key', function()
-// {
-//     return \Illuminate\Support\Str::random(32);
-// });
-
 // lets start
 $router->get('/', 'Controller@index');
 
@@ -30,9 +24,15 @@ $router->group(['prefix' => '/test'], function ($router) {
   $router->post('/req','TestController@postRequest');
   $router->post('/random','TestController@generateRandom');
   $router->post('/post','TestController@receive');
-  $router->post('/register','TestController@register');
   $router->post('/login','TestController@login');
 });
+
+// Authentication User
+$router->group(['prefix' => '/user'], function ($router) {
+  $router->post('/register','UserController@register');
+});
+
+
 
 $router->group(['prefix' => '/easycamp'], function ($router) {
       // init Contact

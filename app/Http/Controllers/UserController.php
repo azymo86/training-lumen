@@ -7,31 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class TestController extends BaseController
+class UserController extends BaseController
 {
     public function index ()
     {
         $out = array(
           'success' => true,
-          'message' => 'kamu sukses'
+          'message' => 'Class UserController'
         );
         return response()->json($out,200);
-    }
-
-    public function receive (Request $request)
-    {
-	     return response()->json($request,200);
-    }
-
-
-    public function generateRandom (Request $request)
-    {
-        $this->validate($request, [
-            'length' => 'required|integer',
-        ]);
-
-        $str = $this->str_Random($request->input('length'));
-        return response()->json(['str' => $str], 200);
     }
 
 
